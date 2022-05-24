@@ -1,0 +1,59 @@
+.items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+.items img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    object-position: center;
+}
+.items h5 {
+    font-size: 15px;
+}
+
+.add-item-modal {
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+}
+.add-item-container {
+    background-color: #fff;
+    width: 40%;
+    padding: 2rem;
+    box-shadow:  0px 2px 3px rgba(0, 0, 0, 0.2);
+}
+.add-item-container .add-item-content label {
+    display: block;
+}
+
+.add-item-container .add-item-content input[type='text'], .add-item-container .add-item-content select, .add-item-container .add-item-content textarea,
+.add-item-container .add-item-content input[type='number']  {
+    display: block;
+    width: 100%;
+    padding: 0.3rem;
+    border: 1px solid var(--gray-400);
+    border-radius: 5px;
+}
+
+.add--item{
+    background-color: var(--main-color);
+    color: #fff;
+    width: 100%;
+    border-radius: 5px;
+    padding: 0.3rem;
+}
+.add--button {
+    padding: 0.3rem;
+    border: 1px solid var(--gray-400);
+    border-radius: 5px;
+    font-size: 0.8rem;
+}
