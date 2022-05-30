@@ -267,7 +267,7 @@ export default {
     methods:{
         goToProduct(item){
             // this.$router.push({name:'product-details', params:{id: item.id}})
-        window.open(`https://rising-work.netlify.app/services/?id=${item.id}`)
+        window.open(`https://rising-work.netlify.app/service/?id=${item.id}`)
         },
         addPlan(item){
             this.product_id = item.id;
