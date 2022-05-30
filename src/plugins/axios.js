@@ -15,7 +15,7 @@ const instance = axios.create({
         "Content-type": "application/json",
         // "Access-Control-Allow-Origin": "*",
         // "Access-Control-Allow-Headers": "*",
-        // "Access-Control-Allow-Methods": 'GET, HEAD, PUT, PATCH, POST, DELETE'
+        "Access-Control-Allow-Methods": 'GET, HEAD, PUT, PATCH, POST, DELETE',
         "Authorization": `bearer ${store.state.token}`
     }
 });
@@ -48,7 +48,7 @@ instance.interceptors.response.use(function(response) {
     console.log(error.response.data.message);
     // console.log(error.response.data.detail);
     Toastify({
-        text: "Logged Out",
+        text: "Something Went wrong",
         className: "info",
         style: {
             background: "red",

@@ -12,13 +12,19 @@
                     <span class="material-icons">
                         notifications
                     </span>
-                    <span v-if="getUser.name" class="user--avatar text-capitalize" :class="[getUser.name.charAt(0)]">
-                       {{ getUser.name.charAt(0) }}
+                    <span v-if="getUser.first_name" class="user--avatar text-capitalize" :class="[getUser.first_name.charAt(0)]">
+                       {{ getUser.first_name.charAt(0) }}
                     </span>
-                    <span class="d-lg-block text-capitalize">{{ getUser.name }} </span>
+                    <div>
+                      <span class="d-lg-block text-capitalize">{{ getUser.first_name }} {{ getUser.last_name }} </span>
+                      <span @click="logout" role="button" class="small">Logout</span>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Logout Confirmation box -->
+        <Logout @close="closeConfirmBox" v-show="logout_confirmation"/>
 
         <!-- App Drawer for MObile  -->
         <div class="main--app--drawer shadow-lg" id="side-bar">
@@ -44,6 +50,16 @@
             </li>
           </ul>
         </li>
+        <li>
+          <a href="javscript:void(0)" @click="logout">
+            <span class="material-icons">
+              power
+            </span>
+            <span>
+              Logout
+            </span>
+          </a>
+        </li>
       </ul>
     </div>
     </div>
@@ -51,12 +67,25 @@
 
 <script>
 import menu_items from "@/api/menu.js";
+import Logout from '@/components/modals/logoutConfirm.vue'
 export default {
+  components:{
+    Logout
+  },
   data: () => {
     return {
       menu: menu_items,
       user: '',
+      logout_confirmation: false
     };
+  },
+  methods:{
+    logout(){
+      this.logout_confirmation = !this.logout_confirmation
+        },
+        closeConfirmBox() {
+        this.logout_confirmation = !this.logout_confirmation
+        },
   },
    mounted(){
         const toggller = document.getElementById("tog");

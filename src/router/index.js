@@ -23,7 +23,7 @@ const routes = [{
                 // this generates a separate chunk (about.[hash].js) for this route
                 // which is lazy-loaded when the route is visited.
                 component: () =>
-                    import ( /* webpackChunkName: "about" */ '../views/pages/viewCategories.vue')
+                    import ( /* webpackChunkName: "about" */ '../views/pages/categories/viewCategories.vue')
             },
             {
                 path: '/products',
@@ -32,43 +32,79 @@ const routes = [{
                 // this generates a separate chunk (about.[hash].js) for this route
                 // which is lazy-loaded when the route is visited.
                 component: () =>
-                    import ( /* webpackChunkName: "about" */ '../views/pages/viewProducts.vue')
+                    import ( /* webpackChunkName: "about" */ '../views/pages/products/viewProducts.vue')
             },
             {
-                path: '/transactions',
-                name: 'Transactions',
+                path: '/products/:id',
+                name: 'product-details',
                 // route level code-splitting
                 // this generates a separate chunk (about.[hash].js) for this route
                 // which is lazy-loaded when the route is visited.
                 component: () =>
-                    import ( /* webpackChunkName: "about" */ '../views/pages/allTransactions.vue')
+                    import ( /* webpackChunkName: "about" */ '../views/pages/products/_id.vue')
             },
             {
-                path: '/pending',
+                path: '/all-orders',
+                name: 'Orders',
+                // route level code-splitting
+                // this generates a separate chunk (about.[hash].js) for this route
+                // which is lazy-loaded when the route is visited.
+                component: () =>
+                    import ( /* webpackChunkName: "about" */ '../views/pages/orders/allOrders.vue')
+            },
+            {
+                path: '/pending-orders',
                 name: 'Pending',
                 // route level code-splitting
                 // this generates a separate chunk (about.[hash].js) for this route
                 // which is lazy-loaded when the route is visited.
                 component: () =>
-                    import ( /* webpackChunkName: "about" */ '../views/pages/pendingTransactions.vue')
+                    import ( /* webpackChunkName: "about" */ '../views/pages/orders/pendingOrders.vue')
             },
             {
-                path: '/completed',
+                path: '/delivered-orders',
+                name: 'delivered-orders',
+                // route level code-splitting
+                // this generates a separate chunk (about.[hash].js) for this route
+                // which is lazy-loaded when the route is visited.
+                component: () =>
+                    import ( /* webpackChunkName: "about" */ '../views/pages/orders/deliveredOrders.vue')
+            },
+            {
+                path: '/in-progress-orders',
+                name: 'In-progress',
+                // route level code-splitting
+                // this generates a separate chunk (about.[hash].js) for this route
+                // which is lazy-loaded when the route is visited.
+                component: () =>
+                    import ( /* webpackChunkName: "about" */ '../views/pages/orders/inProgress.vue')
+            },
+            {
+                path: '/completed-orders',
                 name: 'completed',
                 // route level code-splitting
                 // this generates a separate chunk (about.[hash].js) for this route
                 // which is lazy-loaded when the route is visited.
                 component: () =>
-                    import ( /* webpackChunkName: "about" */ '../views/pages/completedTransactions.vue')
+                    import ( /* webpackChunkName: "about" */ '../views/pages/orders/completedOrders.vue')
             },
             {
-                path: '/cancelled',
+                path: '/cancelled-orders',
                 name: 'Cancelled',
                 // route level code-splitting
                 // this generates a separate chunk (about.[hash].js) for this route
                 // which is lazy-loaded when the route is visited.
                 component: () =>
-                    import ( /* webpackChunkName: "about" */ '../views/pages/cancelledTransactions.vue')
+                    import ( /* webpackChunkName: "about" */ '../views/pages/orders/cancelledOrders.vue')
+            },
+            {
+                path: '/orders/:id',
+                name: 'order-details',
+                // route level code-splitting
+                // this generates a separate chunk (about.[hash].js) for this route
+                // which is lazy-loaded when the route is visited.
+                component: () =>
+                    import ( /* webpackChunkName: "about" */ '../views/pages/orders/_id.vue')
             },
             {
                 path: '/user-list',
@@ -77,7 +113,7 @@ const routes = [{
                 // this generates a separate chunk (about.[hash].js) for this route
                 // which is lazy-loaded when the route is visited.
                 component: () =>
-                    import ( /* webpackChunkName: "about" */ '../views/pages/userView.vue')
+                    import ( /* webpackChunkName: "about" */ '../views/pages/user/userView.vue')
             },
         ]
     },
@@ -90,15 +126,6 @@ const routes = [{
         component: () =>
             import ( /* webpackChunkName: "about" */ '../views/auth/signIn.vue')
     },
-    {
-        path: '/about',
-        name: 'about',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () =>
-            import ( /* webpackChunkName: "about" */ '../views/AboutView.vue')
-    }
 ]
 
 const router = new VueRouter({

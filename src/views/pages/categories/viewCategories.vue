@@ -11,9 +11,9 @@
                 </div>
             </div>
             <div class="items">
-                <div class="category shadow-sm p-3" v-for="(item, index) in categories.data" :key="index">
+                <div class="category shadow-lg p-3 bg-white rounded-lg" v-for="(item, index) in categories" :key="index">
                     <div class="d-flex justify-content-between">
-                        <img class="mb-3" :src="baseurl + '/' + item.icon_image + '?' + Date.now() " alt="">
+                        <img class="mb-3 rounded-circle shadow-sm" :src="baseurl + '/' + item.icon_image + '?' + Date.now() " alt="">
                         <div class="d-flex align-items-center" style="gap: 5px">
                             <span class="material-icons text-success" role="button" style="font-size:18px" @click="editCategoryModal(item)">
                                 edit
@@ -38,11 +38,16 @@
                     </span>
                 </div>
                 <h4 class="mb-3 text-dark">Add New Category</h4>
+                <div>
+                    <p class="text-danger" style="font-size: 0.7rem" v-for="(error, index) in errors.icon_image" :key="index"> {{ index+1 }}. {{ error }} </p>
+                    <p v-for="(error, index) in errors.category_name" :key="index">{{ index+1 }}. {{ error}} </p>
+                </div>
+                
                 <div class="add-item-content">
                     <form action="" @submit.prevent="addCategory">
                         <div class="mb-3">
                             <label for="">Enter Category Name</label>
-                            <input type="text" v-model="payload.category_name">
+                            <input type="text" v-model="dataObj.category_name">
                         </div>
                         <div class="mb-3">
                             <div class="center" >
@@ -87,7 +92,7 @@
                        
                         <div class="mb-3">
                             <label for="">Enter New Category Name</label>
-                            <input type="text" v-model="payload.category_name">
+                            <input type="text" v-model="dataObj.category_name">
                         </div>
                         <div class="mb-3">
                             <div class="center" >
@@ -161,6 +166,10 @@ export default {
                 category_name: '',
                 icon_image: null
             },
+            dataObj: {
+                category_name: '',
+                icon_image: null
+            },
             new_icon_image: '',
             add_item: false,
             edit_item: false,
@@ -168,7 +177,8 @@ export default {
             loading: false,
             item_id: '',
             loading2: false,
-            loading3: false
+            loading3: false,
+            errors: {},
         }
     },
     methods:{
@@ -183,8 +193,8 @@ export default {
         },
         async addCategory(){
             let formData = new FormData;
-            formData.append('category_name', this.payload.category_name)
-            formData.append('icon_image', this.payload.icon_image)
+            formData.append('category_name', this.dataObj.category_name)
+            formData.append('icon_image', this.dataObj.icon_image)
             this.loading = true
             try {
                 let res = await this.$axios.post('/admin/create-category', formData)
@@ -199,6 +209,8 @@ export default {
                     }).showToast();
             } catch (error) {
                 console.log(error.response.data);
+                this.errors = error.response.data.errors
+                console.log(this.errors);
                     this.$toastify({
                     text: `${error.response.data.message}`,
                     className: "info",
@@ -240,7 +252,7 @@ export default {
             formData.append('category_name', this.payload.category_name)
             formData.append('icon_image', this.new_icon_image)
             try {
-                let res = await this.$axios.post(`/admin/edit-category/${this.item_id}`)
+                let res = await this.$axios.post(`/admin/edit-category/${this.item_id}`, formData)
                 console.log(res);
                 this.edit_item = false
                 this.$toastify({
@@ -295,9 +307,9 @@ export default {
         },
         showPreview($event) {
       var input = event.target;
-      this.payload.icon_image = input.files[0];
-      // this.payload.icon_image  = URL.createObjectURL(event.target.files[0])
-      console.log(this.payload.icon_image);
+      this.dataObj.icon_image = input.files[0];
+      // this.dataObj.icon_image  = URL.createObjectURL(event.target.files[0])
+      console.log(this.dataObj.icon_image);
       if ($event.target.files.length > 0) {
         var src = URL.createObjectURL(event.target.files[0]);
         var preview = document.getElementById("file-ip-1-preview");

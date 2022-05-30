@@ -19,10 +19,11 @@
             <thead>
               <tr>
                 <th scope="col">Id</th>
-                <th scope="col">Username</th>
+                <th scope="col">Name</th>
                 <th scope="col">Email</th>
+                <th scope="col">Phone Number</th>
                 <th scope="col">Status</th>
-                <th scope="col">Actions</th>
+                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -32,15 +33,16 @@
               <tr v-for="(user, index) in users.data" :key="index" v-else>
                 <td> {{ index + 1 }} </td>
                 <!-- <td>{{ user.id }}</td> -->
-                <td class="text-capitalize">{{ user.name }}</td>
+                <td class="text-capitalize">{{ user.first_name }} {{ user.last_name }} </td>
                 <td>{{ user.email }}</td>
+                <td>{{ user.phone_no }}</td>
                 <td>
-                  <span :class="[user.status]"> {{ user.status }} </span>
+                  <span class="user" :class="[user.status]"> {{ user.status }} </span>
                 </td>
                 <td>
                   <button
                     class="ban font-weight-bold new-button"
-                    v-if="user.status === 'unbanned'"
+                    v-if="user.status === 'active'"
                     @click="showModal(user)"
                   >
                     Ban
@@ -50,7 +52,7 @@
                     class="unban font-weight-bold new-button"
                     v-else
                   >
-                    Unban
+                    Activate
                   </button>
                 </td>
               </tr>
@@ -141,7 +143,7 @@ export default {
       formData.append("status", this.action)
       try {
         let res = await this.$axios.post(
-          `/admin/update-user-status/${this.id}`, formData
+          `/admin/edit-user-status/${this.id}`, formData
         );
         console.log(res.data);
         this.getUsers();

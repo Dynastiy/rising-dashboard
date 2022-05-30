@@ -2,7 +2,7 @@
   <div>
     <div class="main--app--drawer shadow-lg">
       <div class="top--image text-center">
-        <!-- <img src="@/assets/img/icon.svg" width="100" alt="" /> -->
+        <img src="@/assets/img/rising.svg" width="150" alt="" />
       </div>
       <ul class="list-unstyled">
         <li v-for="item in menu" :key="item.id">

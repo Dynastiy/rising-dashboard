@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import Axios from 'axios';
+// import Axios from 'axios';
 import createPersistedState from 'vuex-persistedstate';
 
 Vue.use(Vuex);
@@ -9,7 +9,7 @@ const getDefaultState = () => {
     return {
         token: '',
         user: {},
-        amount: {}
+        dashboard: []
     };
 };
 
@@ -24,8 +24,8 @@ export default new Vuex.Store({
         getUser: state => {
             return state.user;
         },
-        getAmounts: state => {
-            return state.amount;
+        getDashboard: state => {
+            return state.dashboard;
         }
     },
     mutations: {
@@ -35,8 +35,8 @@ export default new Vuex.Store({
         SET_USER: (state, user) => {
             state.user = user;
         },
-        SET_AMOUNT: (state, amount) => {
-            state.amount = amount;
+        SET_DASHBOARD: (state, dashboard) => {
+            state.dashboard = dashboard;
         },
         RESET: state => {
             Object.assign(state, getDefaultState());
@@ -46,12 +46,9 @@ export default new Vuex.Store({
         login: ({ commit }, { token, user }) => {
             commit('SET_TOKEN', token);
             commit('SET_USER', user);
-
-            // set auth header
-            Axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         },
-        amounts: ({ commit }, { amount }) => {
-            commit('SET_AMOUNT', amount);
+        dashboard: ({ commit }, { dashboard }) => {
+            commit('SET_DASHBOARD', dashboard);
         },
         logout: ({ commit }) => {
             commit('RESET', '');

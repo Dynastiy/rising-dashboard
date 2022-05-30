@@ -24,39 +24,52 @@ const items = [{
             url: '/categories',
             icon: 'category'
         },
-        {
-            id: 5,
-            menu_item: "Plans",
-            url: '/plans',
-            icon: 'card_membership'
-        }, ]
+        // {
+        //     id: 5,
+        //     menu_item: "Plans",
+        //     url: '/plans',
+        //     icon: 'card_membership'
+        // }, 
+    ]
     },
     {
         id: 2,
-        menu_header: "transactions",
+        menu_header: "Orders",
         sub_menu: [{
                 id: 1,
-                menu_item: "Transactions",
-                url: '/transactions',
+                menu_item: "All Orders",
+                url: '/all-orders',
                 icon: 'money'
             },
 
             {
                 id: 2,
                 menu_item: "Pending",
-                url: '/pending',
+                url: '/pending-orders',
                 icon: 'pending'
             },
             {
                 id: 3,
-                menu_item: "Completed",
-                url: '/completed',
+                menu_item: "In Progress",
+                url: '/in-progress-orders',
                 icon: 'task_alt'
             },
             {
                 id: 4,
+                menu_item: "Completed",
+                url: '/completed-orders',
+                icon: 'cancel'
+            },
+            {
+                id: 5,
+                menu_item: "Delivered",
+                url: '/delivered-orders',
+                icon: 'cancel'
+            },
+            {
+                id: 6,
                 menu_item: "Cancelled",
-                url: '/cancelled',
+                url: '/cancelled-orders',
                 icon: 'cancel'
             },
         ]

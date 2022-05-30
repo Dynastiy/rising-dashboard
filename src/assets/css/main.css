@@ -17,16 +17,6 @@ body.active {
     padding: 1.2rem 0;
 }
 
-.hero--section {
-    background: url('@/assets/img/bg.webp');
-    background-size: cover;
-    /* background-position: ; */
-    min-height: 60vh;
-    padding: 2rem 0;
-    display: flex;
-    align-items: center;
-    text-align: center;
-}
 
 .hero--section h1 {
     font-size: 48px;
@@ -365,6 +355,11 @@ br {
 .table td {
     color: var(--main-color);
     font-weight: 500;
+}
+
+.table tbody tr:hover {
+
+    background-color: rgba(0, 0, 0, 0.06);
 }
 
 .table thead th {
@@ -772,12 +767,16 @@ br {
 
 .view--more:hover {}
 
-.banned {
-    color: rgba(255, 0, 0, 0.747);
+.user.banned {
+    background-color: rgba(255, 0, 0, 0.2);
+    color: rgba(255, 0, 0);
 }
 
-.unbanned {
+.user.active {
+    background-color: rgb(4, 112, 4, 0.2);
     color: rgb(4, 112, 4);
+    padding: 0.3rem 0.5rem;
+    border-radius: 3px;
 }
 
 .sure-modal {
@@ -858,4 +857,79 @@ br {
     color: #fff !important;
     border-radius: 5px;
     padding: 0.2rem 0.5rem;
+}
+.nav-tabs .nav-link {
+    border: none;
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link {
+    color: #000;
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    border:none;
+    background-color: rgba(0, 0, 0, 0.06) ;
+    border-bottom: 3px solid var(--primary-color);
+}
+
+
+/* Messages  */
+
+.chat--area {
+    border: 1px solid var(--gray-400);
+}
+.chat--area input {
+    border: none;
+    width: 90%;
+    padding: 0.7rem;
+    outline: none;
+    /* border-radius: 10px; */
+}
+.chat--area .chat--screen {
+    height: 300px;
+    overflow-y: scroll;
+    padding: 2rem;
+    margin-left: auto;
+}
+.chat--area .message--area {
+    background-color: var(--gray-400);
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+.message--content {
+    background-color: var(--gray-200);
+    margin-bottom: 1rem;
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: max-content;
+    margin-left: auto;
+}
+.message--content p {
+    word-break: normal;
+}
+
+.message--content.active {
+    background-color: #00c0a33d;
+}
+
+/* Create Post Modal  */
+.create-post-mask {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    height: 100vh;
+}
+.create-post-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.create-post-content {
+    background-color: #fff;
+    width: 30%;
+    border-radius: 10px;
+    padding: 1rem 2rem;
 }
