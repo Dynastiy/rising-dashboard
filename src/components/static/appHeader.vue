@@ -34,7 +34,7 @@
                 </span>
             </div>
       <div class="top--image text-center">
-        <router-link to="/"><img src="@/assets/img/icon.svg" width="80" alt="" /></router-link>
+        <router-link to="/"><img src="@/assets/img/rising.svg" width="80" alt="" /></router-link>
       </div>
       <ul class="list-unstyled">
         <li v-for="item in menu" :key="item.id">
