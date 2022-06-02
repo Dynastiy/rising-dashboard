@@ -9,7 +9,8 @@ const getDefaultState = () => {
     return {
         token: '',
         user: {},
-        dashboard: []
+        dashboard: [],
+        product_id: ''
     };
 };
 
@@ -26,6 +27,9 @@ export default new Vuex.Store({
         },
         getDashboard: state => {
             return state.dashboard;
+        },
+        getProductId: state =>{
+            return state.product_id
         }
     },
     mutations: {
@@ -38,6 +42,9 @@ export default new Vuex.Store({
         SET_DASHBOARD: (state, dashboard) => {
             state.dashboard = dashboard;
         },
+        SET_PRODUCT_ID: (state, product_id) => {
+            state.product_id = product_id;
+        },
         RESET: state => {
             Object.assign(state, getDefaultState());
         }
@@ -49,6 +56,9 @@ export default new Vuex.Store({
         },
         dashboard: ({ commit }, { dashboard }) => {
             commit('SET_DASHBOARD', dashboard);
+        },
+        product_id: ({ commit }, { product_id }) => {
+            commit('SET_PRODUCT_ID', product_id);
         },
         logout: ({ commit }) => {
             commit('RESET', '');

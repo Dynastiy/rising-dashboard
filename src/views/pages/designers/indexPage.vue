@@ -1,7 +1,7 @@
 <template>
   <div>
     <section class="mt-4">
-      <h3 class="text-bold">User List</h3>
+      <h3 class="text-bold">Designers</h3>
       <div class="mt-4 other--tables">
         <div class="search--field d-flex align-items-center ml-auto">
           <span class="material-icons"> search </span>
@@ -30,7 +30,7 @@
               <tr v-if="loading">
                 Fetching Data . . .
               </tr>
-              <tr v-for="(user, index) in users.data" :key="index" v-else>
+              <tr v-for="(user, index) in users" :key="index" v-else>
                 <td> {{ index + 1 }} </td>
                 <!-- <td>{{ user.id }}</td> -->
                 <td class="text-capitalize">{{ user.first_name }} {{ user.last_name }} </td>
@@ -124,31 +124,16 @@ export default {
     };
   },
   methods: {
-    async getUsers(page = 1) {
+    async getUsers() {
       this.loading = true;
       try {
-        let res = await this.$axios.get(`/admin/get-users/?page=${page}`)
-        console.log(res.data);
-        this.users = res.data;
+        let res = await this.$axios.get(`/all-designers`)
+        console.log(res.data.designers);
+        this.users = res.data.designers;
       } catch (error) {
         console.log(error);
       }
       this.loading = false;
-    },
-    makeDesigner(user){
-      let payload = { role: 'designer' }
-      this.loader = true;
-      this.$axios.post(`admin/edit-user-role/${user.id}`, payload)
-      .then((res)=>{
-        console.log(res);
-      })
-      .catch((err)=>{
-        console.log(err);
-      })
-      .finally(()=>{
-        this.loader = false
-        this.getUsers()
-      })
     },
     async getUser() {
       this.loading = true;

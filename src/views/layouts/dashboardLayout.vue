@@ -4,7 +4,7 @@
         
         <app-drawer/>
         <div id="main--dashboard">
-            <router-view/>
+            <router-view :key="$route.fullPath"/>
         </div>
     </div>
 </template>

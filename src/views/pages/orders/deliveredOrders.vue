@@ -27,7 +27,7 @@
                                 <tr v-if="loading">Fetching Data . . .</tr>
                                 <tr role="button" @click="view_more(order)" v-for="(order, index) in orders.delivered_orders.data" :key="index" v-else>
                                     <td>  {{ index+1 }} </td>
-                                    <td> {{  }} </td>
+                                    <td> {{ order.user.first_name }} {{ order.user.last_name }} </td>
                                     <td> {{ order.product_name }} </td>
                                     <td> {{ order.total_amount }} </td>
                                     <td> <span :class="order.status"> {{ order.status }} </span> </td>

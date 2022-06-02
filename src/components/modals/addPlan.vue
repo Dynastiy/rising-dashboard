@@ -8,6 +8,7 @@
                     </span>
                 </div>
                 <h4 class="mb-3 text-dark">Add New Plan</h4>
+
                 <div class="add-item-content">
                     <form action="" @submit.prevent="addPlan">
                        
@@ -54,22 +55,46 @@ export default {
     },
     methods: {
         addPlan(){
-            this.$axios.post('/admin/create-plan', this.dataObj)
+            let payload = {
+                name: this.dataObj.name,
+                price: this.dataObj.price,
+                delivery_time: this.dataObj.delivery_time,
+                product_id: this.item_id,
+            }
+            console.log(this.dataObj);
+            this.$axios.post('/admin/create-plan', payload)
             .then((res)=>{
                 console.log(res);
+                this.$toastify({
+                    text: `Plan Created Succesfully`,
+                    className: "info",
+                    style: {
+                        background: "green",
+                    },
+                    }).showToast();
+
+                this.dataObj = {}
             })
             .catch((err)=>{
                 console.log(err);
+                this.$toastify({
+                    text: `Something Went wrong`,
+                    className: "info",
+                    style: {
+                        background: "#f00",
+                    },
+                    }).showToast();
             })
             .finally(()=>{
-                this.dataObj = {}
             })
             this.$emit('close')
             console.log(this.dataObj);
         }
     },
-    mounted(){
+    async created(){
         this.dataObj.product_id = this.item_id
+        // console.log(this.dataObj.product_id);
+        // console.log(this.$store.getters.getProductId);
     }
 }
 </script>

@@ -6,7 +6,8 @@ const items = [{
             menu_item: "Dashboard",
             url: '/',
             icon: 'apps'
-        }, {
+        }, 
+        {
             id: 2,
             menu_item: "Users",
             url: '/user-list',
@@ -14,12 +15,18 @@ const items = [{
         },
         {
             id: 3,
+            menu_item: "Designers",
+            url: '/designers',
+            icon: 'people'
+        },
+        {
+            id: 4,
             menu_item: "Products",
             url: '/products',
             icon: 'inventory_2'
         },
         {
-            id: 4,
+            id: 5,
             menu_item: "Categories",
             url: '/categories',
             icon: 'category'

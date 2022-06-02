@@ -57,3 +57,42 @@
     border-radius: 5px;
     font-size: 0.8rem;
 }
+.loader {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.immagg {
+    object-position: top;
+    -o-object-position: top;
+    -o-object-fit: cover;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.feat__image img{
+    object-position: top;
+    -o-object-position: top;
+    -o-object-fit: cover;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.nav--item {
+    background-color: var(--gray-300);
+    margin-top: 1rem;
+    padding: 0.6rem;
+}
+
+.add--benefit input {
+    padding: 0.3rem;
+    border: 1px solid var(--gray-400);
+    border-radius: 5px;
+    outline: none;
+    
+}

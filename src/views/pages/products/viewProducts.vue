@@ -266,13 +266,13 @@ export default {
     },
     methods:{
         goToProduct(item){
-            // this.$router.push({name:'product-details', params:{id: item.id}})
-        window.open(`https://rising-work.netlify.app/service/?id=${item.id}`)
+            this.$router.push({name:'product-details', params:{id: item.id}})
+        // window.open(`https://rising-work.netlify.app/service/?id=${item.id}`)
         },
         addPlan(item){
+            this.add_plan = !this.add_plan;
             this.product_id = item.id;
             console.log(this.product_id);
-            this.add_plan = !this.add_plan
         },
         addFeature(item){
             this.feature_product_id = item.id;

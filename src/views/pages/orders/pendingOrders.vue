@@ -25,14 +25,22 @@
                                 
                                 
                                 <tr v-if="loading">Fetching Data . . .</tr>
-                                <tr role="button" @click="view_more(order)" v-for="(order, index) in orders.pending_orders.data" :key="index" v-else>
+                                <tr  v-for="(order, index) in orders.pending_orders.data" :key="index" v-else>
                                     <td>  {{ index+1 }} </td>
-                                    <td> {{  }} </td>
-                                    <td> {{ order.product_name }} </td>
-                                    <td> {{ order.total_amount }} </td>
+                                    <td> {{ order.user.first_name }} {{ order.user.last_name }} </td>
+                                    <td role="button" @click="view_more(order)"> {{ order.product_name }} </td>
+                                    <td> ${{ order.total_amount }} </td>
                                     <td> <span :class="order.status"> {{ order.status }} </span> </td>
                                     <td> {{ timeStamp(order.created_at) }} </td>
-                                    <td> <button class="add--button" @click="view_more(order)">View More</button>  </td>
+                                    <td class="d-flex " style="gap:15px"> <button class="add--button" @click="view_more(order)">View More</button> 
+                                        <button class="add--button btn-dark btn" v-if="order.designer_id" disabled>Assigned</button>
+                                        <div class="btn-group dropleft" v-else>
+                                          <button class="add--button" data-toggle="dropdown" aria-expanded="false" >Assign</button> 
+                                          <div class="dropdown-menu">
+                                              <a class="dropdown-item" href="javascript:void(0)" v-for="designer in designers" :key="designer.id" @click="assign(order, designer)"> {{ designer.first_name }} {{ designer.first_name }} </a>
+                                          </div>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr v-show="orders.pending_orders.total === 0 " class="text-danger">Nothing Here . . .</tr>
                                 </tbody>
@@ -59,16 +67,57 @@ export default {
             nairaFilter, percentFilter, percentageFilter, timeStamp,
             loading: false,
             orders: [],
+            designers:[],
         }
     },
     methods:{
       view_more(order){
         this.$router.push({ name: 'order-details', params:{ id: order.id } })
       },
+      getDesigners(){
+        this.$axios.get('all-designers')
+        .then((res)=>{
+          console.log(res);
+          this.designers = res.data.designers
+        })
+        .catch((err)=>{
+          console.log(err);
+        })
+      },
+      assign(order, designer){
+        let payload = {designer_id: designer.id}
+        this.$axios.post(`admin/order-assign-designer/${order.id}`, payload)
+        .then((res)=>{
+          console.log(res);
+          // this.getAnalytics()
+        })
+        .catch((err)=>{
+          console.log(err);
+        })
+        .finally(()=>{
+          // this.orders = this.$store.getters.getDashboard
+          this.getAnalytics()
+        })
+        this.getAnalytics()
+        console.log(order.id);
+        console.log(designer.id);
+      },
+      async getAnalytics(){
+            let res = await this.$axios.get('/admin/dashboard')
+            console.log(res.data );
+            // this.analytics = 
+            this.orders = res.data
+            // let dashboard = res.data
+            // this.$store.dispatch('dashboard', { dashboard })
+        },
     },
     beforeMount(){
-      this.orders = this.$store.getters.getDashboard
-      console.log(this.orders);
+      // this.orders = this.$store.getters.getDashboard
+      // console.log(this.orders);
+    },
+    mounted(){
+      this.getDesigners()
+      this.getAnalytics()
     }
    
 }

@@ -10,7 +10,6 @@
                 <h4 class="mb-3 text-dark">Add New Feature</h4>
                 <div class="add-item-content">
                     <form action="" @submit.prevent="addFeature">
-                       {{ product2_id }}
                         <div class="mb-3">
                             <label for="">Feature Name</label>
                             <input type="text" v-model="dataObj.name">
@@ -49,7 +48,12 @@ export default {
     },
     methods: {
         addFeature(){
-            this.$axios.post('/admin/create-feature', this.dataObj)
+            let payload = {
+                name: this.dataObj.name,
+                price: this.dataObj.price,
+                product_id: this.product2_id,
+            }
+            this.$axios.post('/admin/create-feature', payload)
             .then((res)=>{
                 console.log(res);
             })
