@@ -31,7 +31,7 @@
                         </div>
                     </div>
                     <h5 class="text-uppercase"> {{ item.name }} </h5>
-                    <p class="text-secondary small text-capitalize"> {{ sliceHash2(item.description) }} </p>
+                    <p class="text-secondary small text-capitalize" v-html="sliceHash2(item.description)"> </p>
                     <p class="text-secondary small"> <span v-if="item.delivery_time !== 'null' ">{{ item.delivery_time }} Days</span> <span v-else>Not Specified</span> </p>
                     <h6> {{ dollarFilter(item.price) }} </h6>
 
@@ -56,21 +56,22 @@
                 <h4 class="mb-3 text-dark">Add New Product</h4>
                 <div class="add-item-content">
                     <form action="" @submit.prevent="addProduct">
-                        <div class="mb-3">
+                        <div class="mb-2">
                             <label for="">Product Name</label>
                             <input type="text" v-model="payload.name">
                         </div>
-                         <div class="mb-3">
+                         <div class="mb-2">
                             <label for="">Product Description</label>
-                            <textarea v-model="payload.description"></textarea>
+                            <!-- <textarea v-model="payload.description"></textarea> -->
+                            <vue-editor id="editor1" v-model="payload.description" :editor-toolbar="customToolbar" ></vue-editor>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-2">
                             <label for="">Choose Category</label>
                             <select name="" id="" v-model="payload.category_id">
                                 <option v-for="item in categories" :key="item.id" :value="item.id"> {{ item.category_name }} </option>
                             </select>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-2">
                             <label for="">Upload Preview Photos</label>
                             <div class="row">
                                 <input
@@ -152,7 +153,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="">New Product Description</label>
-                            <textarea v-model="dataObj.description"></textarea>
+                            <vue-editor id="editor1" v-model="dataObj.description" :editor-toolbar="customToolbar" ></vue-editor>
                         </div>
                         <div class="mb-3">
                             <div class="center" >
@@ -220,18 +221,26 @@
 </template>
 
 <script>
+// import CKEditor from '@ckeditor/ckeditor5-vue2';
+import { VueEditor } from "vue2-editor";
 import AddPlan from '@/components/modals/addPlan.vue'
+//  import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { dollarFilter, percentFilter, percentageFilter, timeStamp, timeRange, dollarFilter2, sliceHash, sliceHash2, sliceContent, colorSplit } from '@/plugins/filter.js'
 import AddFeature from '@/components/modals/addFeature.vue';
 export default {
     components:{
     AddPlan,
-    AddFeature
+    AddFeature,
+    VueEditor
 },
     data(){
         return {
             dollarFilter, percentFilter, percentageFilter, timeStamp, timeRange, dollarFilter2, sliceHash, sliceHash2, sliceContent, colorSplit,
             products: [],
+            customToolbar: [
+            ["bold", "italic", "underline"],
+            [{ list: "ordered" }, { list: "bullet" }],
+            ],
             baseurl: 'https://api.risingwork.com/',
             payload: {
                 name: '',
@@ -241,7 +250,7 @@ export default {
                 photo_three: null,
                 photo_four: null,
                 photo_five: null,
-                description: '',
+                description: '<p>Enter Description.</p>',
                 // price: null,
                 category_id: ''
             },
@@ -401,7 +410,7 @@ export default {
             formData.append('price', 3)
             formData.append('delivery_time', 3)
             try {
-                let res = await this.$axios.post(`/admin/edit-product/${this.item_id}`)
+                let res = await this.$axios.post(`/admin/edit-product/${this.item_id}`, formData)
                 console.log(res);
                 this.edit_item = false
                 this.$toastify({
@@ -487,3 +496,9 @@ export default {
     
 }
 </script>
+
+<style>
+#editor1{
+    height: 150px;
+}
+</style>

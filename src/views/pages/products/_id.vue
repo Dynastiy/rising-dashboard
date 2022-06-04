@@ -199,7 +199,11 @@
             <div class="mid__content">
               <div class="my-4">
                 <h4 class="mb-1">Description</h4>
-                <p class="text-muted">{{ product.description }}</p>
+                <!-- <p class="text-muted">{{ product.description }}</p> -->
+
+                <div v-html="product.description">
+                  
+                </div>
               </div>
               
               <div>

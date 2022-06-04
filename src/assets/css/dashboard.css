@@ -96,3 +96,8 @@
     outline: none;
     
 }
+
+ol li {
+    list-style: decimal;
+    margin-left: 2rem;
+}
