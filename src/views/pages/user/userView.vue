@@ -55,11 +55,11 @@
                     Activate
                   </button>
                   <button v-if="user.role == 'buyer' " class="add--button btn-dark btn" @click="makeDesigner(user)">Make Designer</button>
-                                        
-                </td>
-                <button class="btn btn-dark" @click="goToUser(user)">
+                  <button class="btn add--button btn-dark" @click="goToUser(user)">
                             View More
-                        </button>
+                        </button>                       
+                </td>
+                
               </tr>
               <tr v-show="users.total === 0" class="text-danger">
                 Nothing Here . . .

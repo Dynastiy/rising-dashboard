@@ -55,7 +55,9 @@
                     Activate
                   </button>
                   <button v-if="user.role == 'buyer' " class="add--button btn-dark btn" @click="makeDesigner(user)">Make Designer</button>
-                                        
+                      <button class="btn add--button btn-dark" @click="goToUser(user)">
+                            View More
+                        </button>                    
                 </td>
               </tr>
               <tr v-show="users.total === 0" class="text-danger">
@@ -124,6 +126,9 @@ export default {
     };
   },
   methods: {
+    goToUser(user){
+      this.$router.push({name:'user-details', params: { id: user.id } })
+    },
     async getUsers() {
       this.loading = true;
       try {
