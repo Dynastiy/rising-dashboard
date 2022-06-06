@@ -1,20 +1,20 @@
 <template>
     <div>
         <div>
-            <section class="py-5">
+            <section class="">
 		<div class="">
-			<h1 class="mb-5">User</h1>
-			<div class="bg-white shadow rounded-lg d-block d-sm-flex">
-				<div class="profile-tab-nav border-right">
-					<div class="p-4">
+			<h1 class="mb-3">User</h1>
+			<div class="bg-white shadow rounded-lg row">
+				<div class=" border-right col-md-4 p-5">
+					<div class="p-3">
 						<div class="img-circle text-center mb-3">
-							<img v-if="getUser.profile_photo" src="img/user2.jpg" alt="Image" class="shadow">
-                            <span v-else :class="getUser.first_name.charAt(0)"> {{ getUser.first_name.charAt(0) }} </span>
+							<img v-if="userData.profile_photo" src="img/user2.jpg" alt="Image" class="shadow">
+                            <span class="span--user" v-else :class="userData.first_name.charAt(0)"> {{ userData.first_name.charAt(0) }} </span>
 						</div>
-						<h5 class="text-center">{{ getUser.first_name }} {{ getUser.last_name }}</h5>
+						<h5 class="text-center">{{ userData.first_name }} {{ userData.last_name }}</h5>
                         <div class="d-flex align-items-center justify-content-center mt-2" style="gap:10px">
                             <div class="status ">
-                                <div class="completed" v-if="getUser.status === 'active' ">
+                                <div class="completed" v-if="userData.status === 'active' ">
                                     Active
                                 </div>
                                 <div class="cancelled" v-else>
@@ -23,7 +23,7 @@
                                 
                             </div>
                             <div class="verified">
-                                <div class="cancelled" v-if="getUser.verification_code === null ">
+                                <div class="cancelled" v-if="userData.verification_code === null ">
                                    Not Verified
                                 </div>
                                 <div class="completed" v-else>
@@ -32,60 +32,35 @@
                             </div>
                         </div>
 					</div>
-					<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-						<a class="nav-link active" id="account-tab" data-toggle="pill" href="#account" role="tab" aria-controls="account" aria-selected="true">
-							<i class="fa fa-home text-center mr-1"></i> 
-							Profile
-						</a>
-					</div>
 				</div>
-				<div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
-					<div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
-						<h3 class="mb-4">Account Settings</h3>
-						<div class="">
-							<div class="">
-								<div class="form-group">
-                                <label>First Name</label>
-                                <input type="text" class="form-control" v-model="userData.first_name">
-								</div>
-							</div>
-							<div class="">
-								<div class="form-group">
-                                <label>Last Name</label>
-                                <input type="text" class="form-control" v-model="userData.last_name">
-								</div>
-							</div>
-							<div class="">
-								<div class="form-group">
-                                <label>Email</label>
-                                <input type="text" class="form-control" v-model="userData.email">
-								</div>
-							</div>
-							<div class="">
-								<div class="form-group">
-                                <label>Phone number</label>
-                                <input type="text" class="form-control" v-model="userData.phone_no">
-								</div>
-							</div>
-                            <div class="">
-								<div class="form-group">
-                                <label>Country</label>
-                                <input type="text" class="form-control" v-model="userData.country">
-								</div>
-							</div>
-							<div class="">
-								<div class="form-group">
-								<label>About</label>
-									<textarea class="form-control" v-model="userData.about" rows="4">
-                                    </textarea>
-								</div>
-							</div>
-						</div>
-						<div class="text-right">
-							<button class="btn--main">Update</button>
-						</div>
-					</div>
-				</div>
+				
+                <div class="col-md-8 p-5">
+                    <h3 class="mb-4">User Details</h3>
+                    <div>
+                        <h5 class="text-secondary"> Name </h5>
+                        <p > {{ userData.first_name }} {{ userData.last_name }} </p>
+                    </div>
+                    <hr>
+                        <div>
+                        <h5 class="text-secondary"> Email </h5>
+                        <p> {{ userData.email }} </p>
+                    </div>
+                    <hr>
+                        <div>
+                        <h5 class="text-secondary"> Phone Number </h5>
+                        <p> {{ userData.phone_no }} </p>
+                    </div>
+                    <hr>
+                    <div>
+                        <h5 class="text-secondary"> Country </h5>
+                        <p> {{ userData.country }} </p>
+                    </div>
+                    <hr>
+                    <div>
+                        <h5 class="text-secondary"> About</h5>
+                        <p> {{ userData.about }} </p>
+                    </div>
+                </div>
 			</div>
 		</div>
 	</section>
@@ -112,14 +87,16 @@ export default {
 			// 	new_password: '',
             // },
             // countries: {},
-            id: this.$route.params.id
+            id: this.$route.params.id,
+            userData: {}
         }
     },
     methods:{
        getUser(){
            this.$axios.get(`admin/find-user/${this.id}`)
            .then((res)=>{
-               console.log(res);
+               console.log(res.data.user);
+               this.userData = res.data.user
            })
            .catch((err)=>{
                console.log(err);
