@@ -22,7 +22,7 @@
                                     more_vert
                                 </span>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="javascript:void(0)" @click="editProductModal(item)">Edit Product</a>
+                                    <!-- <a class="dropdown-item" href="javascript:void(0)" @click="editProductModal(item)">Edit Product</a> -->
                                     <a class="dropdown-item" href="javascript:void(0)" @click="addPlan(item)">Add Plan</a>
                                     <a class="dropdown-item" href="javascript:void(0)"  @click="addFeature(item)">Add Features</a>
                                     <a class="dropdown-item text-danger" href="javascript:void(0)" @click="deleteProductModal(item)">Delete Product</a>
