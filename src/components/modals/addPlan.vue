@@ -89,6 +89,7 @@ export default {
             })
             this.$emit('close')
             console.log(this.dataObj);
+            this.dataObj = {}
         }
     },
     async created(){

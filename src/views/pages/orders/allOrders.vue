@@ -27,7 +27,7 @@
                                 <tr v-if="loading">Fetching Data . . .</tr>
                                 <tr role="button" @click="view_more(order)" v-for="(order, index) in orders.all_orders.data" :key="index" v-else>
                                     <td>  {{ index+1 }} </td>
-                                    <td> {{  }} </td>
+                                    <td> {{ order.user.first_name }} {{ order.user.last_name }} </td>
                                     <td> {{ order.product_name }} </td>
                                     <td> {{ order.total_amount }} </td>
                                     <td> <span :class="order.status"> {{ order.status }} </span> </td>
@@ -65,9 +65,20 @@ export default {
       view_more(order){
         this.$router.push({ name: 'order-details', params:{ id: order.id } })
       },
+      async getAnalytics(){
+            let res = await this.$axios.get('/admin/dashboard')
+            console.log(res.data );
+            this.orders = res.data
+            // let dashboard = res.data
+            // this.$store.dispatch('dashboard', { dashboard })
+        },
+    },
+    mounted(){
+      
+      this.getAnalytics()
     },
     beforeMount(){
-      this.orders = this.$store.getters.getDashboard
+      // this.orders = this.$store.getters.getDashboard
       console.log(this.orders);
     }
    

@@ -25,21 +25,50 @@
     left: 0;
     z-index: 999;
 }
+
 .add-item-container {
     background-color: #fff;
     width: 40%;
-    padding: 2rem;
-    box-shadow:  0px 2px 3px rgba(0, 0, 0, 0.2);
+    padding: 1rem;
 }
-.add-item-container .add-item-content label {
+
+.add-item-modal .add-item-content label {
     display: block;
 }
 
-.add-item-container .add-item-content input[type='text'], .add-item-container .add-item-content select, .add-item-container .add-item-content textarea,
-.add-item-container .add-item-content input[type='number']  {
+.add-item-modal .add-item-content input[type='text'],  .add-item-modal .add-item-content textarea,
+.add-item-modal .add-item-content input[type='number']  {
     display: block;
     width: 100%;
-    padding: 0.3rem;
+    padding: 0.6rem;
+    border: 1px solid var(--gray-400);
+    border-radius: 5px;
+}
+.add-item-modal .add-item-content select {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--gray-400);
+    border-radius: 5px;
+}
+
+
+.create-product .add-item-content label {
+    display: block;
+}
+
+.create-product .add-item-content input[type='text'],  .create-product .add-item-content textarea,
+.create-product .add-item-content input[type='number']  {
+    display: block;
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid var(--gray-400);
+    border-radius: 5px;
+}
+.create-product .add-item-content select {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
     border: 1px solid var(--gray-400);
     border-radius: 5px;
 }
@@ -100,4 +129,48 @@
 ol li {
     list-style: decimal;
     margin-left: 2rem;
+}
+span.unavailable {
+    background-color: rgba(255, 0, 0, 0.2);
+    color: rgba(255, 0, 0);
+    padding: 0.3rem 0.5rem;
+    border-radius: 3px;
+}
+
+span.available {
+    background-color: rgb(4, 112, 4, 0.2);
+    color: rgb(4, 112, 4);
+    padding: 0.3rem 0.5rem;
+    border-radius: 3px;
+}
+
+.btn--other {
+    padding: 0.3rem 0.5rem;
+    background-color:rgb(4, 112, 4) ;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+}
+.btn--other2 {
+    padding: 0.3rem 0.5rem;
+    background-color:rgba(255, 0, 0) ;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+}
+
+.product--image {
+    height: 200px;
+    width: 200px;
+    border-radius: 10px;
+    object-position: top;
+    object-fit: cover;
+}
+
+.featured--image {
+    width: 100px;
+    height: 100px;
+    object-position: top;
+    object-fit: cover;
+    border-radius: 10px;
 }

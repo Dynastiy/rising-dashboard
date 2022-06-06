@@ -77,9 +77,9 @@
                                 <!-- <tr v-if="loading">Fetching Data . . .</tr> -->
                                 <tr role="button" @click="view_more(order)" v-for="(order, index) in analytics.all_orders.data" :key="index">
                                     <td>  {{ index+1 }} </td>
-                                    <td> {{  }} </td>
+                                    <td> {{ order.user.first_name }} {{ order.user.last_name }} </td>
                                     <td> {{ order.product_name }} </td>
-                                    <td> {{ order.total_amount }} </td>
+                                    <td> ${{ order.total_amount }} </td>
                                     <td> <span :class="order.status"> {{ order.status }} </span> </td>
                                     <td> {{ timeStamp(order.created_at) }} </td>
                                     <td> <button class="add--button" @click="view_more(order)">View More</button>  </td>

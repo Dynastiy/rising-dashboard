@@ -35,6 +35,15 @@ const routes = [{
                     import ( /* webpackChunkName: "about" */ '../views/pages/products/viewProducts.vue')
             },
             {
+                path: '/products/create-new',
+                name: 'new-products',
+                // route level code-splitting
+                // this generates a separate chunk (about.[hash].js) for this route
+                // which is lazy-loaded when the route is visited.
+                component: () =>
+                    import ( /* webpackChunkName: "about" */ '../views/pages/products/createNew.vue')
+            },
+            {
                 path: '/products/:id',
                 name: 'product-details',
                 // route level code-splitting
@@ -115,15 +124,24 @@ const routes = [{
                 component: () =>
                     import ( /* webpackChunkName: "about" */ '../views/pages/user/userView.vue')
             },
-{
-            path: '/designers',
-            name: 'designers',
-            // route level code-splitting
-            // this generates a separate chunk (about.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
-            component: () =>
-                import ( /* webpackChunkName: "about" */ '../views/pages/designers/indexPage.vue')
-        },
+            {
+                path: '/user-list/:id',
+                name: 'user-details',
+                // route level code-splitting
+                // this generates a separate chunk (about.[hash].js) for this route
+                // which is lazy-loaded when the route is visited.
+                component: () =>
+                    import ( /* webpackChunkName: "about" */ '../views/pages/user/_id.vue')
+            },
+            {
+                path: '/designers',
+                name: 'designers',
+                // route level code-splitting
+                // this generates a separate chunk (about.[hash].js) for this route
+                // which is lazy-loaded when the route is visited.
+                component: () =>
+                    import ( /* webpackChunkName: "about" */ '../views/pages/designers/indexPage.vue')
+            },
         ]
     },
     {

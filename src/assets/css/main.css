@@ -349,9 +349,9 @@ br {
 
 .table td,
 .table th {
-    border-top: none;
-    border-bottom: none;
-    font-size: 0.8rem;
+    /* border-top: none; */
+    /* border-bottom: none; */
+    font-size: 0.9rem;
     vertical-align: middle;
 }
 
@@ -386,7 +386,7 @@ br {
     border-radius: 3px;
 }
 
-.completed {
+.delivered {
     background-color: #CBF4C9;
     color: rgb(3, 116, 3);
     padding: 0.2rem 0.5rem;
@@ -396,6 +396,18 @@ br {
 .pending {
     background-color: rgb(255, 229, 189);
     color: #ffb20f;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+}
+.in-progress {
+    color: #17a2b8;
+    background-color: #17a3b840;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+}
+.completed {
+    color: #20c997;
+    background-color: #20c9964a;
     padding: 0.2rem 0.5rem;
     border-radius: 3px;
 }

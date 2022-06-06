@@ -19,7 +19,7 @@
                 </div>
             </nav>
             <div class="tab-content mt-3" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-overview" role="tabpanel" aria-labelledby="nav-overview-tab">  <Overview :overviewData = "overview" /></div>
+                <div class="tab-pane fade show active" id="nav-overview" role="tabpanel" aria-labelledby="nav-overview-tab">  <Overview :overviewData = "overview" @reload="getOrder"/></div>
                 <div class="tab-pane fade" id="nav-requirements" role="tabpanel" aria-labelledby="nav-requirements-tab"> <Requirements :requirementsData = "requirements"/> </div>
                 <div class="tab-pane fade" id="nav-delivery" role="tabpanel" aria-labelledby="nav-delivery-tab"> Delivered Unit </div>
                 <div class="tab-pane fade" id="nav-delivered" role="tabpanel" aria-labelledby="nav-delivered-tab"> <Delivered :deliveredFiles="delivered"/> </div>
