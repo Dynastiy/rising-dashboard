@@ -128,7 +128,8 @@ export default {
       add_benefit: false,
       plan: {},
       benefits: [],
-      plan_id: []
+      plan_id: '',
+      planIds: []
     };
   },
   methods: {
@@ -147,7 +148,6 @@ export default {
         this.getSingleProduct()
     },
     makeUnavailable(plan, plan_desc){
-        alert("Hello World")
         console.log(plan.id, plan_desc.id);
         let payload = {
             status: 'unavailable'
@@ -176,9 +176,9 @@ export default {
         let plan = 0
         for(plan of planIds){
             console.log(plan.id);
-            this.plan_id.push(plan.id)
+            this.planIds.push(plan.id)
         }
-        console.log(this.plan_id);
+        console.log(this.planIds);
         this.product_details = res.data;
       } catch (error) {
         console.log(error);
@@ -197,9 +197,10 @@ export default {
       })
     },
     addBenefit(){
+      console.log(this.planIds);
       let payload = {
         name: this.name,
-        plan_ids: this.plan_id,
+        plan_ids: this.planIds,
       }
       this.$axios.post(`admin/create-plan-description/`, payload)
       .then((res)=>{

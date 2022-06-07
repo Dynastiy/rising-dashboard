@@ -249,6 +249,9 @@ export default {
       var preview = document.getElementById("file-ip-1-preview2");
       preview.style.display = "none";
     },
+    goBack(){
+      this.$router.go(-1)
+    }
   },
   mounted() {
     this.getCategories();
