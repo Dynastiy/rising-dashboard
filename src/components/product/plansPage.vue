@@ -110,6 +110,7 @@
 </template>
 
 <script>
+
 export default {
   components: {},
   data() {
@@ -135,31 +136,24 @@ export default {
   methods: {
     makeAvailable(plan, plan_desc){
         console.log(plan.id, plan_desc.id);
-        let payload = {
-            status: 'available'
-        }
-        this.$axios.post(`admin/edit-plan-description/${plan_desc.id}/plan/${plan.id}`, payload)
+        this.$axios.post(`admin/update-plan-description/${plan.id}/desc/${plan_desc.id}`)
         .then((res)=>{
             console.log(res);
         })
         .catch((err)=>{
             console.log(err);
+          this.findSinglePlan()
         })
-        this.getSingleProduct()
     },
     makeUnavailable(plan, plan_desc){
-        console.log(plan.id, plan_desc.id);
-        let payload = {
-            status: 'unavailable'
-        }
-        this.$axios.post(`admin/edit-plan-description/${plan_desc.id}/plan/${plan.id}`, payload)
+        this.$axios.post(`admin/update-plan-description/${plan.id}/desc/${plan_desc.id}`)
         .then((res)=>{
             console.log(res);
         })
         .catch((err)=>{
             console.log(err);
+          this.findSinglePlan()
         })
-        this.getSingleProduct()
     },
     selectPlan(plan){
           this.isActive = ( this.isActive === plan.id ) ? null : plan.id;
@@ -185,11 +179,12 @@ export default {
       }
     },
     findSinglePlan(){
-      this.$axios.get(`find-plan/${this.plan_id}`)
+      this.$axios.get(`admin/get-plan-description/${this.plan_id}`)
       .then((res)=>{
         console.log(res);
         this.plan = res.data
-        this.benefits = res.data.plan.plan_descriptions
+        console.log(this.plan);
+        this.benefits = res.data.descriptions
         console.log(this.benefits);
       })
       .catch((err)=>{
