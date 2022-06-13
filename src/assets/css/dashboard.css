@@ -3,12 +3,14 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
+
 .items img {
     width: 50px;
     height: 50px;
     object-fit: cover;
     object-position: center;
 }
+
 .items h5 {
     font-size: 15px;
 }
@@ -36,14 +38,16 @@
     display: block;
 }
 
-.add-item-modal .add-item-content input[type='text'],  .add-item-modal .add-item-content textarea,
-.add-item-modal .add-item-content input[type='number']  {
+.add-item-modal .add-item-content input[type='text'],
+.add-item-modal .add-item-content textarea,
+.add-item-modal .add-item-content input[type='number'] {
     display: block;
     width: 100%;
     padding: 0.6rem;
     border: 1px solid var(--gray-400);
     border-radius: 5px;
 }
+
 .add-item-modal .add-item-content select {
     display: block;
     width: 100%;
@@ -52,19 +56,20 @@
     border-radius: 5px;
 }
 
-
 .create-product .add-item-content label {
     display: block;
 }
 
-.create-product .add-item-content input[type='text'],  .create-product .add-item-content textarea,
-.create-product .add-item-content input[type='number']  {
+.create-product .add-item-content input[type='text'],
+.create-product .add-item-content textarea,
+.create-product .add-item-content input[type='number'] {
     display: block;
     width: 100%;
     padding: 0.6rem;
     border: 1px solid var(--gray-400);
     border-radius: 5px;
 }
+
 .create-product .add-item-content select {
     display: block;
     width: 100%;
@@ -73,19 +78,21 @@
     border-radius: 5px;
 }
 
-.add--item{
+.add--item {
     background-color: var(--main-color);
     color: #fff;
     width: 100%;
     border-radius: 5px;
     padding: 0.3rem;
 }
+
 .add--button {
     padding: 0.3rem;
     border: 1px solid var(--gray-400);
     border-radius: 5px;
     font-size: 0.8rem;
 }
+
 .loader {
     position: fixed;
     background-color: rgba(0, 0, 0, 0.7);
@@ -98,6 +105,7 @@
     align-items: center;
     justify-content: center;
 }
+
 .immagg {
     object-position: top;
     -o-object-position: top;
@@ -105,13 +113,15 @@
     object-fit: cover;
     border-radius: 50%;
 }
-.feat__image img{
+
+.feat__image img {
     object-position: top;
     -o-object-position: top;
     -o-object-fit: cover;
     object-fit: cover;
     border-radius: 50%;
 }
+
 .nav--item {
     background-color: var(--gray-300);
     margin-top: 1rem;
@@ -123,13 +133,13 @@
     border: 1px solid var(--gray-400);
     border-radius: 5px;
     outline: none;
-    
 }
 
 ol li {
     list-style: decimal;
     margin-left: 2rem;
 }
+
 span.unavailable {
     background-color: rgba(255, 0, 0, 0.2);
     color: rgba(255, 0, 0);
@@ -146,14 +156,15 @@ span.available {
 
 .btn--other {
     padding: 0.3rem 0.5rem;
-    background-color:rgb(4, 112, 4) ;
+    background-color: rgb(4, 112, 4);
     border: none;
     border-radius: 3px;
     color: #fff;
 }
+
 .btn--other2 {
     padding: 0.3rem 0.5rem;
-    background-color:rgba(255, 0, 0) ;
+    background-color: rgba(255, 0, 0);
     border: none;
     border-radius: 3px;
     color: #fff;
@@ -176,19 +187,41 @@ span.available {
 }
 
 .img-circle img {
-	height: 100px;
-	width: 100px;
-	border-radius: 100%;
-	border: 5px solid #fff;
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    border: 5px solid #fff;
 }
+
 .img-circle .span--user {
-	height: 100px;
-	width: 100px;
+    height: 100px;
+    width: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 4rem;
-	border-radius: 100%;
-	border: 5px solid #fff;
+    border-radius: 100%;
+    border: 5px solid #fff;
     margin: 0 auto;
+}
+
+.el-button--primary {
+    border-color: var(--main-color);
+    background-color: var(--main-color);
+}
+
+.el-button--primary:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+.el-button--default {
+    border-color: var(--main-color);
+    /* background-color: var(--main-color); */
+}
+
+.el-button--default:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: #fff;
 }

@@ -95,6 +95,7 @@
                   <td> <button class="btn--other" v-if="plan_desc.status == 'unavailable' " @click="makeAvailable(plan, plan_desc)">Make Available</button>
                         <button class="btn--other2" v-else @click="makeUnavailable(plan, plan_desc)"> Make Unavailable </button>
                   </td>
+                  <td> <button class="btn--other2" @click="deletePlanDescription(plan_desc)">Delete Plan Benefit</button> </td>
                   
               </tr>
             </tbody>
@@ -104,6 +105,19 @@
             </div>
           </div>
         </div>
+
+        <el-dialog
+          title="Are you sure?"
+          :visible.sync="dialogVisible"
+          width="30%"
+          >
+          <span>This process cannot be reversed</span>
+          <span slot="footer" class="dialog-footer">
+            <el-button @click="dialogVisible = false">Cancel</el-button>
+            <el-button type="primary" @click="deleteBenefit">Confirm</el-button>
+          </span>
+        </el-dialog>
+
       </div>
     </div>
   </div>
@@ -115,6 +129,7 @@ export default {
   components: {},
   data() {
     return {
+      dialogVisible: false,
       product: {},
       id: this.$route.params.id,
       payload: {
@@ -130,10 +145,35 @@ export default {
       plan: {},
       benefits: [],
       plan_id: '',
-      planIds: []
+      planIds: [],
+      plan_desc_id: ''
     };
   },
   methods: {
+    deletePlanDescription(plan_desc){
+      this.dialogVisible = true
+      this.plan_desc_id = plan_desc.id
+    },
+    deleteBenefit(){
+      this.$axios.post(`admin/delete-plan-description/${this.plan_desc_id}`)
+        .then((res)=>{
+            console.log(res);
+            this.$toastify({
+                    text: `Deleted Succesfully`,
+                    className: "info",
+                    style: {
+                        background: "#034B03",
+                    },
+                    }).showToast();
+        })
+        .catch((err)=>{
+            console.log(err);
+          this.findSinglePlan()
+        })
+        .finally(()=>{
+          this.dialogVisible = false
+        })
+    },
     makeAvailable(plan, plan_desc){
         console.log(plan.id, plan_desc.id);
         this.$axios.post(`admin/update-plan-description/${plan.id}/desc/${plan_desc.id}`)
